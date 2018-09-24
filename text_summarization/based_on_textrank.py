@@ -40,11 +40,11 @@ def textrank(start_tr, iters, d, weights):
 def summaly(sentences, weigths, topK):
     # 对句子的权重进行排序，得到用户指定的前topK个权重
     ranks = dict(zip(weigths, range(len(weigths))))
-    ranks = [list(rank) for rank in sorted(ranks.iteritems(), key=lambda d: d[0], reverse=True)]
+    ranks = [list(rank) for rank in sorted(ranks.items(), key=lambda d: d[0], reverse=True)]
     top_rank = ranks[:topK]
     # 抽取前topK个句子，并根据句子在文本中的顺序从小到大进行排序，然后输出
     summary = dict(zip([sentences[rank[1]] for rank in top_rank], [rank[1] for rank in top_rank]))
-    summary = [list(rank)[0] for rank in sorted(summary.iteritems(), key=lambda d: d[1])]
+    summary = [list(rank)[0] for rank in sorted(summary.items(), key=lambda d: d[1])]
     return ''.join(summary)
 
 def main():
@@ -63,10 +63,10 @@ def main():
     iters = 100
     tr = textrank(start_tr, iters, d, weights).tolist()[0]
 
-    ratio = float(raw_input("Please enter the compressed ratio: "))
+    ratio = float(input("Please enter the compressed ratio: "))
     topK = int(num*ratio)
     summary = summaly(text, tr, topK)
-    print summary
+    print(summary)
 
 if __name__ == '__main__':
     main()

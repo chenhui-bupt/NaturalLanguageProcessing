@@ -59,13 +59,13 @@ def compute_sentences_weigths(keywords, paragraphs, p_bias=1, p_weight=1.2, s_bi
         inner_num = len(sentence_cut(sentence, punctuation_list=',;，:：；… '))
         content_weights[sentence] = content_weights[sentence]['weight']*\
                                     content_weights[sentence]['p_weight']*content_weights[sentence]['s_weight']/inner_num
-    content_weights = sorted(content_weights.iteritems(), key=lambda d: d[1], reverse=True)
+    content_weights = sorted(content_weights.items(), key=lambda d: d[1], reverse=True)
     content_weights = [list(result)[0] for result in content_weights]
     return content_weights
 
 def main():
     # 输入压缩比
-    ratio = raw_input("Please enter the compressed ratio: ")
+    ratio = input("Please enter the compressed ratio: ")
     title, paragraghs = load_data("data/01.txt")
     sentences = []
 
@@ -85,10 +85,10 @@ def main():
         result_dict[sentence] = sentences_with_indices[sentence]
 
     # 将抽取出来的句子按原文顺序排好输出
-    result_dict = sorted(result_dict.iteritems(), key=lambda d: d[1])
+    result_dict = sorted(result_dict.items(), key=lambda d: d[1])
     result_dict = [result[0] for result in result_dict]
     summary = ''.join(result_dict)
-    print summary
+    print(summary)
 
 if __name__=='__main__':
     main()

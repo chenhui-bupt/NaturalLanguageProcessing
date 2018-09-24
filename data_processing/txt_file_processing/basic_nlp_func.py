@@ -1,6 +1,6 @@
 # coding:utf-8
 import jieba
-from stp_nlp import stp_seg
+# from stp_nlp import stp_seg
 
 # 文本长度小于指定长度的进行丢弃
 def text_filter(corpus, length=140):
@@ -11,7 +11,7 @@ def sentence_cut(text, punctuation_list=',.!?;~，。！？；～… '):
     sentences = []
     sentiment_word_position = 0
     word_position = 0
-    punctuation_list = punctuation_list.decode('utf8')
+    # punctuation_list = punctuation_list.decode('utf8')
     for words in text:
         word_position += 1
         if words in punctuation_list:
